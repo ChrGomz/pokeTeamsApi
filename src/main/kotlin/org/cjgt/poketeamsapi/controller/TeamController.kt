@@ -17,7 +17,7 @@ class TeamController(private val teamService: TeamService) {
     }
 
     @PostMapping("/{id}")
-    suspend fun createTeam(@PathVariable id: Long, @RequestBody pokemonIds: List<Int>): Response<Team> {
+    suspend fun createTeam(@PathVariable id: Long, @RequestBody pokemonIds: List<Int>): ResponseEntity<Team> {
         val team = teamService.createTeam(id, pokemonIds)
         return ResponseEntity(team, HttpStatus.CREATED)
     }
