@@ -12,6 +12,11 @@ class TeamService(private val teamRepository: TeamRepository) {
         return teamRepository.save(team)
     }
 
+    fun createTeam(id: Long, pokemonIds: List<Int>): Team {
+        val team = Team(id = id, pokemonIds = pokemonIds)
+        return teamRepository.save(team)
+    }
+
     fun getTeam(id: Long): Team? {
         return teamRepository.findById(id).orElse(null)
     }

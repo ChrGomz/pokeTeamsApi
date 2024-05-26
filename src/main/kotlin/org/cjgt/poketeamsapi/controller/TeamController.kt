@@ -16,6 +16,12 @@ class TeamController(private val teamService: TeamService) {
         return ResponseEntity(team, HttpStatus.CREATED)
     }
 
+    @PostMapping("/{id}")
+    suspend fun createTeam(@PathVariable id: Long, @RequestBody pokemonIds: List<Int>): Response<Team> {
+        val team = teamService.createTeam(id, pokemonIds)
+        return ResponseEntity(team, HttpStatus.CREATED)
+    }
+
     @GetMapping("/{id}")
     fun getTeam(@PathVariable id: Long): ResponseEntity<Team> {
         val team = teamService.getTeam(id)
