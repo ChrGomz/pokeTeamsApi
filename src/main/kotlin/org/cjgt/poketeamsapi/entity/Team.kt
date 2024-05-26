@@ -4,11 +4,11 @@ import jakarta.persistence.*
 
 @Entity
 data class Team(
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     val id: Long = 0,
 
     @ElementCollection
-    val pokemonIds: List<Int> = emptyList()
+    var pokemonIds: MutableList<Int> = mutableListOf()
 ) {
     override fun toString(): String {
         return "Team(id=$id, pokemonIds=$pokemonIds)"

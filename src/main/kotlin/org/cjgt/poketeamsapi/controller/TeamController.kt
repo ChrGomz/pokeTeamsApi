@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*
 class TeamController(private val teamService: TeamService) {
 
     @PostMapping
-    fun createTeam(@RequestBody pokemonIds: List<Int>): ResponseEntity<Team> {
+    fun createTeam(@RequestBody pokemonIds: MutableList<Int>): ResponseEntity<Team> {
         val team = teamService.createTeam(pokemonIds)
         return ResponseEntity(team, HttpStatus.CREATED)
     }
 
     @PostMapping("/{id}")
-    suspend fun createTeam(@PathVariable id: Long, @RequestBody pokemonIds: List<Int>): ResponseEntity<Team> {
+    fun createTeam(@PathVariable id: Long, @RequestBody pokemonIds: MutableList<Int>): ResponseEntity<Team> {
         val team = teamService.createTeam(id, pokemonIds)
         return ResponseEntity(team, HttpStatus.CREATED)
     }
@@ -35,7 +35,7 @@ class TeamController(private val teamService: TeamService) {
     }
 
     @PutMapping("/{id}")
-    fun updateTeam(@PathVariable id: Long, @RequestBody pokemonIds: List<Int>): ResponseEntity<Team> {
+    fun updateTeam(@PathVariable id: Long, @RequestBody pokemonIds: MutableList<Int>): ResponseEntity<Team> {
         val team = teamService.updateTeam(id, pokemonIds)
         return if (team != null) ResponseEntity(team, HttpStatus.OK) else ResponseEntity(HttpStatus.NOT_FOUND)
     }

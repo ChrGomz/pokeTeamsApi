@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service
 @Service
 class TeamService(private val teamRepository: TeamRepository) {
 
-    fun createTeam(pokemonIds: List<Int>): Team {
+    fun createTeam(pokemonIds: MutableList<Int>): Team {
         val team = Team(pokemonIds = pokemonIds)
         return teamRepository.save(team)
     }
 
-    fun createTeam(id: Long, pokemonIds: List<Int>): Team {
+    fun createTeam(id: Long, pokemonIds: MutableList<Int>): Team {
         val team = Team(id = id, pokemonIds = pokemonIds)
         return teamRepository.save(team)
     }
@@ -25,7 +25,7 @@ class TeamService(private val teamRepository: TeamRepository) {
         return teamRepository.findAll()
     }
 
-    fun updateTeam(id: Long, pokemonIds: List<Int>): Team? {
+    fun updateTeam(id: Long, pokemonIds: MutableList<Int>): Team? {
         val team = getTeam(id) ?: return null
         val updatedTeam = team.copy(pokemonIds = pokemonIds)
         return teamRepository.save(updatedTeam)
